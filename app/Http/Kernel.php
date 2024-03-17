@@ -59,6 +59,16 @@ class Kernel extends HttpKernel
             'password.expires',
             'is_admin',
         ],
+
+        'owner' => [
+            /*
+             * This is configurable, disable boilerplate.access.user.admin_requires_2fa instead of removing this
+             */
+            '2fa:enabled',
+            'auth',
+            'password.expires',
+            'is_owner',
+        ],
     ];
 
     /**
@@ -77,6 +87,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'is_admin' => \App\Domains\Auth\Http\Middleware\AdminCheck::class,
+        'is_owner' => \App\Domains\Auth\Http\Middleware\OwnerCheck::class,
         'is_super_admin' => \App\Domains\Auth\Http\Middleware\SuperAdminCheck::class,
         'is_user' => \App\Domains\Auth\Http\Middleware\UserCheck::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,

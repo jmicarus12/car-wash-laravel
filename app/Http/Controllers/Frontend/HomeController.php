@@ -12,6 +12,10 @@ class HomeController
      */
     public function index()
     {
-        return view('frontend.index');
+        if (auth()->check()) {
+            return redirect(route(homeRoute()));
+        }
+
+        return view(homeRoute());
     }
 }

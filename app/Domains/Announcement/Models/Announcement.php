@@ -19,6 +19,7 @@ class Announcement extends Model
 
     public const TYPE_FRONTEND = 'frontend';
     public const TYPE_BACKEND = 'backend';
+    public const TYPE_OWNER = 'owner';
 
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;

@@ -30,6 +30,28 @@ class UserSeeder extends Seeder
             'active' => true,
         ]);
 
+        // Owner Seeder
+        User::create([
+            'type' => User::TYPE_OWNER,
+            'name' => 'Test Owner',
+            'username' => 't_owner',
+            'email' => 'owner@gmail.com',
+            'password' => 'secret',
+            'email_verified_at' => null,
+            'active' => true,
+        ]);
+
+        // Customer Seeder
+        User::create([
+            'type' => User::TYPE_USER,
+            'name' => 'Test Customer',
+            'username' => 't_customer',
+            'email' => 'customer@gmail.com',
+            'password' => 'secret',
+            'email_verified_at' => null,
+            'active' => true,
+        ]);
+
         if (app()->environment(['local', 'testing'])) {
             User::create([
                 'type' => User::TYPE_USER,

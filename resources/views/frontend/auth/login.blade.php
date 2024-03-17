@@ -17,7 +17,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-mail Address')</label>
 
                                 <div class="col-md-6">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="{{ __('E-mail Address / Username') }}" value="{{ old('username') }}" maxlength="255" required autofocus />
                                 </div>
                             </div><!--form-group-->
 

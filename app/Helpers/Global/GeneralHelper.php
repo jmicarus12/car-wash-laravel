@@ -42,6 +42,10 @@ if (! function_exists('homeRoute')) {
                 return 'admin.dashboard';
             }
 
+            if (auth()->user()->isOwner()) {
+                return 'owner.dashboard';
+            }
+
             if (auth()->user()->isUser()) {
                 return 'frontend.user.dashboard';
             }

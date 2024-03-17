@@ -29,6 +29,20 @@ class PermissionRoleSeeder extends Seeder
             'name' => 'Administrator',
         ]);
 
+        // Create Roles
+        Role::create([
+            'id' => 2,
+            'type' => User::TYPE_OWNER,
+            'name' => 'Owner',
+        ]);
+
+        // Create Roles
+        Role::create([
+            'id' => 3,
+            'type' => User::TYPE_USER,
+            'name' => 'Customer',
+        ]);
+
         // Non Grouped Permissions
         //
 

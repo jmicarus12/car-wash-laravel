@@ -28,6 +28,13 @@ class LoginController
     use AuthenticatesUsers;
 
     /**
+     * Input Username/Email.
+     *
+     * @var string
+     */
+    public $inputUsername;
+
+    /**
      * Where to redirect users after login.
      *
      * @return string
@@ -47,6 +54,15 @@ class LoginController
         return view('frontend.auth.login');
     }
 
+    public function username()
+    {
+        if(filter_var($this->inputUsername, FILTER_VALIDATE_EMAIL)){
+            return 'email';
+        }
+
+        return 'username';
+    }
+
     /**
      * Validate the user login request.
      *
@@ -57,9 +73,13 @@ class LoginController
      */
     protected function validateLogin(Request $request)
     {
+        $request->request->add(['email' => $request->username]);
+
+        $this->inputUsername = $request->username;
+
         $request->validate([
             $this->username() => ['required', 'max:255', 'string'],
-            'password' => array_merge(['max:100'], PasswordRules::login()),
+            'password' => array_merge(['max:100', 'nullable'], array_diff(PasswordRules::login(), ['required'])),
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
         ], [
             'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
@@ -78,6 +98,12 @@ class LoginController
     protected function attemptLogin(Request $request)
     {
         try {
+            if(!$request->get('password')) {
+                session()->put('EmptyPassword', true);
+            } else {
+                session()->forget('EmptyPassword');
+            }
+
             return $this->guard()->attempt(
                 $this->credentials($request),
                 $request->filled('remember')
@@ -94,6 +120,7 @@ class LoginController
      *
      * @param  Request  $request
      * @param $user
+     *
      * @return mixed
      */
     protected function authenticated(Request $request, $user)

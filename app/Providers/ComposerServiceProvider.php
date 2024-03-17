@@ -29,5 +29,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(['backend.layouts.app'], function ($view) use ($announcementService) {
             $view->with('announcements', $announcementService->getForBackend());
         });
+
+        View::composer(['owner.layouts.app'], function ($view) use ($announcementService) {
+            $view->with('announcements', $announcementService->getForOwner());
+        });
     }
 }

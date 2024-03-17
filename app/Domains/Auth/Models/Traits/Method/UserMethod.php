@@ -28,6 +28,14 @@ trait UserMethod
     /**
      * @return mixed
      */
+    public function isOwner(): bool
+    {
+        return $this->type === self::TYPE_OWNER;
+    }
+
+    /**
+     * @return mixed
+     */
     public function isUser(): bool
     {
         return $this->type === self::TYPE_USER;

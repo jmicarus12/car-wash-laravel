@@ -41,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
 
     public const TYPE_ADMIN = 'admin';
     public const TYPE_USER = 'user';
+    public const TYPE_OWNER = 'owner';
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
     protected $fillable = [
         'type',
         'name',
+        'username',
         'email',
         'email_verified_at',
         'password',
