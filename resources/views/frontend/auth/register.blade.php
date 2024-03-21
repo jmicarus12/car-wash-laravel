@@ -9,10 +9,20 @@
                 <x-frontend.card>
                     <x-slot name="header">
                         @lang('Register')
+                        @if (str_contains(url()->current(), route('frontend.auth.register.user')))
+                            @lang(__('as User'))
+                        @elseif (str_contains(url()->current(), route('frontend.auth.register.owner')))
+                            @lang(__('as Owner'))
+                        @endif
                     </x-slot>
 
                     <x-slot name="body">
                         <x-forms.post :action="route('frontend.auth.register')">
+                            @if (str_contains(url()->current(), route('frontend.auth.register.user')))
+                                <input type="hidden" name="type" id="type" value="user"/>
+                            @elseif (str_contains(url()->current(), route('frontend.auth.register.owner')))
+                                <input type="hidden" name="type" id="type" value="owner"/>
+                            @endif
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
 
@@ -26,6 +36,14 @@
 
                                 <div class="col-md-6">
                                     <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
+                                </div>
+                            </div><!--form-group-->
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Username')</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="{{ __('Username') }}" value="{{ old('username') }}" maxlength="255" required/>
                                 </div>
                             </div><!--form-group-->
 

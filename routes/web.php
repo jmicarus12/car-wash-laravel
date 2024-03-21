@@ -33,6 +33,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
  *
  * These routes can only be accessed by users with type `owner`
  */
-Route::group(['prefix' => 'owner', 'as' => 'owner.', 'middleware' => 'owner'], function () {
+Route::group(['prefix' => 'owner', 'as' => 'owner.', 'middleware' => ['owner']], function () {
     includeRouteFiles(__DIR__.'/owner/');
 });

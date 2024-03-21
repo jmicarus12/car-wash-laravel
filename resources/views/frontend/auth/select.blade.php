@@ -63,13 +63,31 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .square-btn {
+                width: 200px; /* Adjust width as needed */
+                height: 200px; /* Adjust height as needed */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                border-radius: 10px; /* Rounded corners if needed */
+                font-size: 18px; /* Adjust font size as needed */
+                background-color: #888; /* Grey background color */
+                color: #fff; /* White text color */
+                transition: background-color 0.3s; /* Smooth transition for hover effect */
+            }
+
+            .square-btn:hover {
+                background-color: #007bff; /* Blue background color on hover */
+                /* Add hover styles for text color if desired */
+            }
         </style>
         @stack('after-styles')
     </head>
     <body>
         @include('includes.partials.read-only')
         @include('includes.partials.logged-in-as')
-        @include('includes.partials.announcements')
 
         <div id="app" class="flex-center position-ref full-height">
             <div class="top-right links">
@@ -90,15 +108,14 @@
 
             <div class="content">
                 @include('includes.partials.messages')
-
-                <div class="title m-b-md">
-                    <span>Carwash Thesis</span>
-                </div><!--title-->
-
-                <div class="links">
-                    {{-- <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
-                    <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a> --}}
-                </div><!--links-->
+                <div class="text-center row">
+                    <div class="col">
+                        <a href="{{ route('frontend.auth.register.owner') }}" class="btn btn-primary btn-lg square-btn mr-3">Register as Owner</a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('frontend.auth.register.user') }}" class="btn btn-primary btn-lg square-btn">Register as User</a>
+                    </div>
+                </div>
             </div><!--content-->
         </div><!--app-->
 

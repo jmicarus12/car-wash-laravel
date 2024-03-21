@@ -86,8 +86,10 @@ Route::group(['as' => 'auth.'], function () {
         Route::post('login', [LoginController::class, 'login']);
 
         // Registration
-        Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-        Route::post('register', [RegisterController::class, 'register']);
+        Route::get('register-select', [RegisterController::class, 'showRegistrationSelect'])->name('register.select');
+        Route::get('register-user', [RegisterController::class, 'showRegistrationFormUser'])->name('register.user');
+        Route::get('register-owner', [RegisterController::class, 'showRegistrationFormOwner'])->name('register.owner');
+        Route::post('register', [RegisterController::class, 'register'])->name('register');
 
         // Password Reset
         Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');

@@ -53,11 +53,35 @@ class RegisterController
     }
 
     /**
+     * Show the select registration form.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showRegistrationSelect()
+    {
+        abort_unless(config('boilerplate.access.user.registration'), 404);
+
+        return view('frontend.auth.select');
+    }
+
+    /**
      * Show the application registration form.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRegistrationForm()
+    public function showRegistrationFormUser()
+    {
+        abort_unless(config('boilerplate.access.user.registration'), 404);
+
+        return view('frontend.auth.register');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showRegistrationFormOwner()
     {
         abort_unless(config('boilerplate.access.user.registration'), 404);
 
@@ -74,6 +98,7 @@ class RegisterController
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:100'],
+            'username' => ['required', 'string', 'max:40'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'password' => array_merge(['max:100'], PasswordRules::register($data['email'] ?? null)),
             'terms' => ['required', 'in:1'],

@@ -3,7 +3,9 @@
 namespace App\Domains\Auth\Http\Controllers\Frontend\Auth;
 
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Domains\Auth\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 /**
  * Class VerificationController.
@@ -41,8 +43,27 @@ class VerificationController
      */
     public function show(Request $request)
     {
+        $view = Auth::user()->isType(User::TYPE_OWNER) ? 'owner.auth.verify' : 'frontend.auth.verify';
+        
+        dd($view);
+
         return $request->user()->hasVerifiedEmail()
             ? redirect($this->redirectPath())
-            : view('frontend.auth.verify');
+            : view($view);
+    }
+
+    /**
+     * Show the email verification notice.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function showOwner(Request $request)
+    {
+        $view = Auth::user()->isType(User::TYPE_OWNER) ? 'owner.auth.verify' : 'frontend.auth.verify';
+
+        return $request->user()->hasVerifiedEmail()
+            ? redirect($this->redirectPath())
+            : view($view);
     }
 }
