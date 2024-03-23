@@ -15,10 +15,10 @@
     @stack('after-styles')
 </head>
 <body class="c-app">
-    @include('backend.includes.sidebar')
+    @include('owner.includes.sidebar')
 
     <div class="c-wrapper c-fixed-components">
-        @include('backend.includes.header')
+        @include('owner.includes.header')
         @include('includes.partials.read-only')
         @include('includes.partials.logged-in-as')
         @include('includes.partials.announcements')
@@ -34,7 +34,7 @@
             </main>
         </div><!--c-body-->
 
-        @include('backend.includes.footer')
+        @include('owner.includes.footer')
     </div><!--c-wrapper-->
 
     @stack('before-scripts')

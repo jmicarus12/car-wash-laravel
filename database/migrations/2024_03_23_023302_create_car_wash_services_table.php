@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCarWashQueuesTable extends Migration
+class CreateCarWashServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCarWashQueuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_wash_queues', function (Blueprint $table) {
+        Schema::create('car_wash_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_car_id')->nullable();
-            $table->integer('car_wash_service_id')->nullable();
-            $table->enum('status', ['pending', 'approved', 'done', 'declined'])->default('pending');
+            $table->integer('car_wash_store_id');
+            $table->string('service_name');
+            $table->enum('active', ['no', 'yes'])->default('yes');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCarWashQueuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_wash_queues');
+        Schema::dropIfExists('car_wash_services');
     }
 }

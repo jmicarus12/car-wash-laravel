@@ -100,12 +100,27 @@ trait UserMethod
 
     /**
      * @param  bool  $size
-     * @return mixed|string
      *
+     * @return mixed|string
      * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
      */
     public function getAvatar($size = null)
     {
-        return 'https://gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s='.config('boilerplate.avatar.size', $size).'&d=mp';
+        $default = 'https://gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s='.config('boilerplate.avatar.size', $size).'&d=mp';
+
+        return !$this->image ? $default : '/storage/profile/' . $this->image;
+    }
+
+    /**
+     * @param  bool  $size
+     *
+     * @return mixed|string
+     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
+     */
+    public function getAvatarThumb($size = null)
+    {
+        $default = 'https://gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s='.config('boilerplate.avatar.size', $size).'&d=mp';
+
+        return !$this->image ? $default : '/storage/profile/thumbnails/thumb_' . $this->image;
     }
 }

@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\CarWashStore;
 
 /**
  * Class User.
@@ -160,5 +161,13 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
     protected static function newFactory()
     {
         return UserFactory::new();
+    }
+
+    /**
+     * Get the store associated with the user.
+     */
+    public function store()
+    {
+        return $this->hasOne(CarWashStore::class, 'owner_id');
     }
 }

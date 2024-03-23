@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'username' => 't_owner',
             'email' => 'owner@gmail.com',
             'password' => 'secret',
-            'email_verified_at' => null,
+            'email_verified_at' => now(),
             'active' => true,
         ]);
 

@@ -16,9 +16,11 @@ class CreateCarWashStoresTable extends Migration
         Schema::create('car_wash_stores', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('owner_id')->nullable();
-            $table->double('latitude')->nullable();
-            $table->double('longitude')->nullable();
+            $table->integer('owner_id');
+            $table->double('latitude');
+            $table->double('longitude');
+            $table->string('store_name');
+            $table->string('image')->nullable();
         });
     }
 

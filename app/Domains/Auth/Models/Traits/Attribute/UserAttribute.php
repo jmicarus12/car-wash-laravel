@@ -32,6 +32,14 @@ trait UserAttribute
     }
 
     /**
+     * @return mixed
+     */
+    public function getAvatarThumbAttribute()
+    {
+        return $this->getAvatarThumb();
+    }
+
+    /**
      * @return string
      */
     public function getPermissionsLabelAttribute()
