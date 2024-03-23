@@ -44,8 +44,6 @@ class VerificationController
     public function show(Request $request)
     {
         $view = Auth::user()->isType(User::TYPE_OWNER) ? 'owner.auth.verify' : 'frontend.auth.verify';
-        
-        dd($view);
 
         return $request->user()->hasVerifiedEmail()
             ? redirect($this->redirectPath())
