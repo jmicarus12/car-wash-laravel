@@ -20,6 +20,7 @@ class CreateCarWashStoresTable extends Migration
             $table->double('latitude');
             $table->double('longitude');
             $table->string('store_name');
+            $table->string('address');
             $table->string('image')->nullable();
         });
     }

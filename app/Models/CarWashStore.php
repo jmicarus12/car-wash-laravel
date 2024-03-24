@@ -23,7 +23,8 @@ class CarWashStore extends Model
         'owner_id',
         'latitude',
         'longitude',
-        'store_name'
+        'store_name',
+        'address'
     ];
 
     /**
@@ -40,5 +41,13 @@ class CarWashStore extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the user that owns the store.
+     */
+    public function services()
+    {
+        return $this->hasMany(CarWashService::class);
     }
 }

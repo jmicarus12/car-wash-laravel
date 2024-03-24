@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.auth')
 
 @section('title', __('My Account'))
 

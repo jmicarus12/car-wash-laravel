@@ -13,7 +13,7 @@ class CreateCarWashQueuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_wash_queues', function (Blueprint $table) {
+        Schema::create('car_service_queues', function (Blueprint $table) {
             $table->id();
             $table->integer('user_car_id')->nullable();
             $table->integer('car_wash_service_id')->nullable();
@@ -29,6 +29,6 @@ class CreateCarWashQueuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_wash_queues');
+        Schema::dropIfExists('car_service_queues');
     }
 }

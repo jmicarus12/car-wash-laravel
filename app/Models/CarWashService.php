@@ -24,11 +24,13 @@ class CarWashService extends Model
         'active'
     ];
 
+    protected $with = ['store'];
+
     /**
      * Get the user that owns the store.
      */
     public function store()
     {
-        return $this->belongsTo(CarWashStore::class);
+        return $this->belongsTo(CarWashStore::class, 'car_wash_store_id', 'id');
     }
 }

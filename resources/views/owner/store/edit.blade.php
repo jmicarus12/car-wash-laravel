@@ -45,6 +45,12 @@
                             <label for="latitude">Latitude</label>
                             <input type="text" class="form-control" id="latitude" name="latitude" value="{{ old('latitude') ?? ($store ? $store->latitude : null) }}" required>
                         </div>
+                
+                        <!-- Latitude -->
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" value="{{ old('address') ?? ($store ? $store->address : null) }}" required>
+                        </div>
                     </div>
                     <!-- Right side for avatar preview and upload -->
                     <div class="col-md-6">

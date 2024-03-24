@@ -12,13 +12,13 @@ Route::group([
     Route::get('/', [StoreController::class, 'index'])
     ->name('index')
     ->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Home'), route('owner.store.index'));
+        $trail->push(__('Store'), route('owner.store.index'));
     });
 
     Route::get('/edit', [StoreController::class, 'edit'])
     ->name('edit')
     ->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Home'), route('owner.store.index'));
+        $trail->parent('owner.store.index')->push(__('Store Edit'), route('owner.store.index'));
     });
 
     Route::post('/update', [StoreController::class, 'update'])->name('update');

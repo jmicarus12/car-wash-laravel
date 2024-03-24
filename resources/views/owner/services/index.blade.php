@@ -6,6 +6,15 @@
     <x-backend.card>
         <x-slot name="header">
             @lang('Services')
+
+            <x-slot name="headerActions">
+                <x-utils.link
+                    icon="c-icon cil-plus"
+                    class="card-header-action"
+                    :href="route('owner.services.create')"
+                    :text="__('Create Service')"
+                />
+            </x-slot>
         </x-slot>
 
         <x-slot name="body">

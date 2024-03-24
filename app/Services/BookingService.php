@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\CarWashService;
+use App\Models\CarServiceQueue;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
@@ -12,64 +12,64 @@ use Throwable;
 use Auth;
 
 /**
- * Class CarServicesService.
+ * Class BookingService.
  */
-class CarServicesService extends BaseService
+class BookingService extends BaseService
 {
-    public function __construct(CarWashService $service)
+    public function __construct(CarServiceQueue $queue)
     {
-        $this->model = $service;
+        $this->model = $queue;
     }
 
     /**
      * @param array $data
      *
-     * @return CarWashService
+     * @return CarServiceQueue
      * @throws GeneralException
      * @throws Throwable
      */
-    public function store(array $data = []): CarWashService
+    public function store(array $data = []): CarServiceQueue
     {
         try {
             DB::beginTransaction();
-            $service = $this->model::create($data);
+            $queue = $this->model::create($data);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem creating this services. Please try again.'));
+            throw new GeneralException(__('There was a problem creating this booking. Please try again.'));
         }
 
         DB::commit();
 
-        return $service;
+        return $queue;
     }
 
     /**
-     * @param CarWashService $service
+     * @param CarServiceQueue $car
      * @param array   $data
      *
      * @return void
      * @throws Throwable
      */
-    public function update(array $data = []): CarWashService
+    public function update(array $data = []): CarServiceQueue
     {
         DB::beginTransaction();
 
         try {
-            $service->update([
-               'service_name' => $data['service_name']
+            $queue->update([
+               'status' => $data['status']
            ]);
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem updating this service. Please try again.'));
+            throw new GeneralException(__('There was a problem updating this booking. Please try again.'));
         }
 
         DB::commit();
 
-        return $service;
+        return $queue;
     }
 }

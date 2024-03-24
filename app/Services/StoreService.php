@@ -95,6 +95,7 @@ class StoreService extends BaseService
                'store_name' => $data['store_name'],
                'latitude'  => $data['latitude'],
                'longitude'  => $data['longitude'],
+               'address'    => $data['address']
            ]);
 
            $upload = $this->uploadAvatar($data, $store->id);

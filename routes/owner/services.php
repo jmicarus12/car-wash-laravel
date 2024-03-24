@@ -13,7 +13,13 @@ Route::group([
     Route::get('/', [ServiceController::class, 'index'])
     ->name('index')
     ->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Home'), route('owner.services.index'));
+        $trail->push(__('Service'), route('owner.services.index'));
+    });
+    
+    Route::get('create', [ServiceController::class, 'create'])
+    ->name('create')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('owner.services.index')->push(__('Create Service'), route('owner.services.create'));
     });
 
     Route::group(['prefix' => '{services}'], function () {
@@ -23,7 +29,7 @@ Route::group([
         Route::get('/', [ServiceController::class, 'show'])
              ->name('show')
              ->breadcrumbs(function (Trail $trail, CarWashService $services) {
-                 $trail->parent('owner.service.index')
+                 $trail->parent('owner.services.index')
                        ->push(__('Service :services', ['services' => $services->service_name]), route('admin.services.show', $services));
         });
 
@@ -36,4 +42,6 @@ Route::group([
 
         Route::patch('/', [ServiceController::class, 'update'])->name('update');
     });
+
+    Route::post('/store', [ServiceController::class, 'store'])->name('store');
 });

@@ -54,6 +54,7 @@ class StoreController
         $request->validate([
             'id' => ['nullable'],
             'store_name' => ['required', 'max:255'],
+            'address' => ['required', 'max:255'],
             'longitude' => ['required', 'max:255'],
             'latitude' => ['required', 'max:255'],
             'avatar'   => ['nullable']

@@ -21,6 +21,7 @@ use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\CarWashStore;
+use App\Models\UserCar;
 
 /**
  * Class User.
@@ -169,5 +170,13 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
     public function store()
     {
         return $this->hasOne(CarWashStore::class, 'owner_id');
+    }
+
+    /**
+     * Get the cars associated with the user.
+     */
+    public function cars()
+    {
+        return $this->hasMany(UserCar::class);
     }
 }

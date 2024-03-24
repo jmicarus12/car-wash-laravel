@@ -16,7 +16,7 @@ class CreateUserCarsTable extends Migration
         Schema::create('user_cars', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('name');
+            $table->string('car_name');
             $table->string('image')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();

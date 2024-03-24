@@ -43,6 +43,12 @@
                         <label for="latitude" class="mr-2">Latitude:</label>
                         <p class="mb-0">{{ $store ? $store->latitude : 'N/A' }}</p>
                     </div>
+                    
+                    <!-- Latitude -->
+                    <div class="form-group d-inline-block">
+                        <label for="latitude" class="mr-2">Address:</label>
+                        <p class="mb-0">{{ $store ? $store->address : 'N/A' }}</p>
+                    </div>
                 </div>
             </div>
         </x-slot>
